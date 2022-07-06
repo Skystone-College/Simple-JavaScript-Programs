@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Context Menu</title>
+
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .context-menu {
+        position: absolute;
+        text-align: center;
+    }
+
+    .context-menu ul {
+        list-style: none;
+    }
+
+</style>
+
+<body>
+
+    <div class="container p-4">
+        <h3>Sample Context Menu Implementation</h3>
+
+        <div class="card m-4" id="menu">
+            <div class="card-body">
+                <h5 class="card-title">Context Menu</h5>
+                <p class="card-text">https://www.geeksforgeeks.org/how-to-add-a-custom-right-click-menu-to-a-webpage/</p>
+                <button type="button" class="btn btn-primary">Refrence</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="context-menu list-group" id="contextMenu" style="display: none">
+        <ul class="">
+            <li><a class="list-group-item list-group-item-action p-1" href="">Feature</a></li>
+            <li><a class="list-group-item list-group-item-action p-1" href="">Scenario</a></li>
+            <li><a class="list-group-item list-group-item-action p-1" href="">Step Definition</a></li>
+            <li><a class="list-group-item list-group-item-action p-1" href="">Keyword</a></li>
+            <li><a class="list-group-item list-group-item-action p-1" href="">Action</a></li>
+        </ul>
+    </div>
+
+
+</body>
+
+<!-- CONTEXT MENU -->
+<script>
+    var menu = document.getElementById("menu");
+    menu.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        document.getElementById("contextMenu").display = 'none';
+
+        if (document.getElementById("contextMenu").style.display == "block")
+            hideMenu();
+        else{
+            var x = e.pageX - 30;
+            var y = e.pageY + 20;
+            var d = document.getElementById("contextMenu");
+            d.style.display = "block";
+            d.style.left = x+'px';
+            d.style.top = y+'px';
+            console.log(x,y);
+        }
+    }, false);
+
+    menu.onclick = hideMenu;
+    menu.oncontextmenu = rightClick;
+
+    function hideMenu() {
+        document.getElementById("contextMenu")
+        .style.display = "none"
+    }
+
+</script>
+
+</html>
